@@ -1172,6 +1172,25 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Receipt Attachment Section */}
+      <section className="receipt-section-wrapper">
+        <div className="receipt-section">
+          <h3 className="receipt-title">Attach Payment Receipt</h3>
+          <p className="receipt-description">
+            After making your payment, please send the receipt screenshot to our Telegram account for verification.
+          </p>
+          <a 
+            href="https://t.me/holiday_12345" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="telegram-link"
+          >
+            <i className="fab fa-telegram"></i>
+            Send Receipt
+          </a>
+        </div>
+      </section>
+      
       {/* Footer Section */}
       <footer id="contact" className="footer">
         <div className="container">
