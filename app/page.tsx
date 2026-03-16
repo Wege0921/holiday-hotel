@@ -52,6 +52,7 @@ export default function Home() {
       } else {
         setActiveMenu('food');
         setActiveFoodMenu(null);
+        setActiveAlcoholicMenu(null); // Clear alcoholic menu when switching to food
       }
     } else if (category === 'alcoholic') {
       // Toggle alcoholic menu open/closed
@@ -61,6 +62,7 @@ export default function Home() {
       } else {
         setActiveMenu('alcoholic');
         setActiveAlcoholicMenu(null);
+        setActiveFoodMenu(null); // Clear food menu when switching to alcoholic
       }
     } else if (category === 'beef' || category === 'chicken' || category === 'pasta' || category === 'fish' || 
                category === 'indian' || category === 'ethiopian' || category === 'snacks' || category === 'pizza' ||
@@ -68,11 +70,13 @@ export default function Home() {
       // Toggle specific food category
       setActiveFoodMenu(activeFoodMenu === category ? null : category);
       setActiveMenu('food'); // Ensure food menu stays open
+      setActiveAlcoholicMenu(null); // Clear alcoholic menu
     } else if (category === 'wine' || category === 'beer' || category === 'whisky' || category === 'vodka' ||
                category === 'gin' || category === 'liqueur') {
       // Toggle specific alcoholic category
       setActiveAlcoholicMenu(activeAlcoholicMenu === category ? null : category);
       setActiveMenu('alcoholic'); // Ensure alcoholic menu stays open
+      setActiveFoodMenu(null); // Clear food menu
     } else {
       // Handle other categories
       setActiveMenu(activeMenu === category ? null : category);
@@ -105,6 +109,7 @@ export default function Home() {
         <nav className="navbar">
           <div className="nav-container">
             <div className="logo">
+              <img src="https://res.cloudinary.com/dpral0rfp/image/upload/v1773670211/holiday-logo_ivfnzy.png" alt="Holiday Hotel Logo" className="logo-image" />
               <h1>Holiday Hotel</h1>
             </div>
             <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
@@ -127,7 +132,7 @@ export default function Home() {
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="hero-title">Holiday Hotel</h1>
-          <p className="hero-tagline">Best Hotel in Addis Ababa, Ethiopia Since 2010</p>
+          <p className="hero-tagline">Best Hotel in Addis Ababa, Ethiopia Since 1986</p>
         </div>
       </section>
 
@@ -1042,24 +1047,121 @@ export default function Home() {
           <div className="payment-container">
             <div className="payment-info">
               <div className="bank-info">
-                <h3>Bank Name: Commercial Bank of Ethiopia</h3>
-                <p>Account: Holiday Hotel - Addis Ababa Branch</p>
+                <h3>Commercial Bank of Ethiopia</h3>
+                <div className="account-details">
+                  <div className="account-item">
+                    <label>Account Name:</label>
+                    <div className="account-name-display">
+                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
+                    </div>
+                  </div>
+                  <div className="account-item">
+                    <label>Account Number:</label>
+                    <div className="copy-container">
+                      <span className="account-number">1000157421895</span>
+                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('1000157421895')}>
+                        <i className="fas fa-copy"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="payment-methods">
-                <h4>Available Payment Methods:</h4>
-                <div className="payment-icons">
-                  <i className="fab fa-cc-visa"></i>
-                  <i className="fab fa-cc-mastercard"></i>
-                  <i className="fas fa-mobile-alt"></i>
-                  <i className="fas fa-university"></i>
+              
+              <div className="bank-info">
+                <h3>Abyssinia Bank</h3>
+                <div className="account-details">
+                  <div className="account-item">
+                    <label>Account Name:</label>
+                    <div className="account-name-display">
+                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
+                    </div>
+                  </div>
+                  <div className="account-item">
+                    <label>Account Number:</label>
+                    <div className="copy-container">
+                      <span className="account-number">36949333</span>
+                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('3000112233445')}>
+                        <i className="fas fa-copy"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bank-info">
+                <h3>Wogagen Bank</h3>
+                <div className="account-details">
+                  <div className="account-item">
+                    <label>Account Name:</label>
+                    <div className="account-name-display">
+                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
+                    </div>
+                  </div>
+                  <div className="account-item">
+                    <label>Account Number:</label>
+                    <div className="copy-container">
+                      <span className="account-number">5000998877665</span>
+                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('5000998877665')}>
+                        <i className="fas fa-copy"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bank-info">
+                <h3>Anbessa Bank</h3>
+                <div className="account-details">
+                  <div className="account-item">
+                    <label>Account Name:</label>
+                    <div className="account-name-display">
+                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
+                    </div>
+                  </div>
+                  <div className="account-item">
+                    <label>Account Number:</label>
+                    <div className="copy-container">
+                      <span className="account-number">00100000070</span>
+                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('2000987654321')}>
+                        <i className="fas fa-copy"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="qr-code">
-              <h3>Scan QR Code to Pay</h3>
-              <div className="qr-placeholder">
-                <i className="fas fa-qrcode"></i>
-                <p>QR Code for Payment</p>
+            
+            <div className="qr-codes">
+              <div className="qr-code">
+                <h3>CBE QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000157421895" alt="CBE QR Code" className="qr-image" />
+                  <p>Commercial Bank of Ethiopia</p>
+                </div>
+              </div>
+              
+              <div className="qr-code">
+                <h3>Abyssinia QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=3000112233445" alt="Abyssinia QR Code" className="qr-image" />
+                  <p>Abyssinia Bank</p>
+                </div>
+              </div>
+              
+              <div className="qr-code">
+                <h3>Wogagen QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=5000998877665" alt="Wogagen QR Code" className="qr-image" />
+                  <p>Wogagen Bank</p>
+                </div>
+              </div>
+              
+              <div className="qr-code">
+                <h3>Anbessa QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=00100000070" alt="Anbessa QR Code" className="qr-image" />
+                  <p>Anbessa Bank</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1074,8 +1176,8 @@ export default function Home() {
               <h3>Contact Information</h3>
               <div className="contact-info">
                 <p><i className="fas fa-map-marker-alt"></i> Haile Gebre Selassie Avenue, Addis Ababa</p>
-                <p><i className="fas fa-phone"></i> 011 661 2081</p>
-                <p><i className="fas fa-envelope"></i> info@holidayhotel.et</p>
+                <p><i className="fas fa-phone"></i> +251116612627</p>
+                <p><i className="fas fa-envelope"></i> holidayhoteladdis@gmail.com</p>
               </div>
             </div>
             <div className="footer-section">
