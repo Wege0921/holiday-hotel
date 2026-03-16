@@ -319,8 +319,8 @@ export default function Home() {
             <div className="footer-section">
               <h3>Contact Information</h3>
               <div className="contact-info">
-                <p><i className="fas fa-map-marker-alt"></i> Bole Road, Addis Ababa, Ethiopia</p>
-                <p><i className="fas fa-phone"></i> +251 11 123 4567</p>
+                <p><i className="fas fa-map-marker-alt"></i> Haile Gebre Selassie Avenue, Addis Ababa</p>
+                <p><i className="fas fa-phone"></i> 011 661 2081</p>
                 <p><i className="fas fa-envelope"></i> info@holidayhotel.et</p>
               </div>
             </div>
@@ -335,7 +335,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; Holiday Hotel – All Rights Reserved</p>
+            <p>&copy; {new Date().getFullYear()} Holiday Hotel – All Rights Reserved</p>
           </div>
         </div>
       </footer>
