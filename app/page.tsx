@@ -109,7 +109,7 @@ export default function Home() {
         <nav className="navbar">
           <div className="nav-container">
             <div className="logo">
-              <img src="https://res.cloudinary.com/dpral0rfp/image/upload/v1773670211/holiday-logo_ivfnzy.png" alt="Holiday Hotel Logo" className="logo-image" />
+              {/* <img src="https://res.cloudinary.com/dpral0rfp/image/upload/v1773670211/holiday-logo_ivfnzy.png" alt="Holiday Hotel Logo" className="logo-image" /> */}
               <h1>Holiday Hotel</h1>
             </div>
             <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
@@ -1045,7 +1045,7 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title">Payment Options</h2>
           <div className="payment-container">
-            <div className="payment-info">
+            <div className="bank-qr-row">
               <div className="bank-info">
                 <h3>Commercial Bank of Ethiopia</h3>
                 <div className="account-details">
@@ -1059,7 +1059,7 @@ export default function Home() {
                     <label>Account Number:</label>
                     <div className="copy-container">
                       <span className="account-number">1000157421895</span>
-                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('1000157421895')}>
+                      <button className="copy-btn" onClick={() => navigator.clipboard.writeText('1000123456789')}>
                         <i className="fas fa-copy"></i>
                       </button>
                     </div>
@@ -1067,6 +1067,16 @@ export default function Home() {
                 </div>
               </div>
               
+              <div className="qr-code">
+                <h3>CBE QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000157421895" alt="CBE QR Code" className="qr-image" />
+                  <p>Commercial Bank of Ethiopia</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bank-qr-row">
               <div className="bank-info">
                 <h3>Abyssinia Bank</h3>
                 <div className="account-details">
@@ -1087,7 +1097,17 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
+              
+              <div className="qr-code">
+                <h3>Abyssinia QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=3000112233445" alt="Abyssinia QR Code" className="qr-image" />
+                  <p>Abyssinia Bank</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bank-qr-row">
               <div className="bank-info">
                 <h3>Wogagen Bank</h3>
                 <div className="account-details">
@@ -1108,8 +1128,18 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              <div class="bank-info">
+              
+              <div className="qr-code">
+                <h3>Wogagen QR</h3>
+                <div className="qr-placeholder">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=5000998877665" alt="Wogagen QR Code" className="qr-image" />
+                  <p>Wogagen Bank</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bank-qr-row">
+              <div className="bank-info">
                 <h3>Anbessa Bank</h3>
                 <div className="account-details">
                   <div className="account-item">
@@ -1129,32 +1159,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="qr-codes">
-              <div className="qr-code">
-                <h3>CBE QR</h3>
-                <div className="qr-placeholder">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000157421895" alt="CBE QR Code" className="qr-image" />
-                  <p>Commercial Bank of Ethiopia</p>
-                </div>
-              </div>
-              
-              <div className="qr-code">
-                <h3>Abyssinia QR</h3>
-                <div className="qr-placeholder">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=3000112233445" alt="Abyssinia QR Code" className="qr-image" />
-                  <p>Abyssinia Bank</p>
-                </div>
-              </div>
-              
-              <div className="qr-code">
-                <h3>Wogagen QR</h3>
-                <div className="qr-placeholder">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=5000998877665" alt="Wogagen QR Code" className="qr-image" />
-                  <p>Wogagen Bank</p>
-                </div>
-              </div>
               
               <div className="qr-code">
                 <h3>Anbessa QR</h3>
@@ -1167,7 +1171,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       {/* Footer Section */}
       <footer id="contact" className="footer">
         <div className="container">

@@ -191,7 +191,7 @@ h1, h2, h3 {
     
     .hero {
         background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                    url('https://res.cloudinary.com/dpral0rfp/image/upload/v1773670215/mobile-hotel-cover.jpg') center/cover no-repeat;
+                    url('https://res.cloudinary.com/dpral0rfp/image/upload/v1773670214/Holiday-Cover_icjhz0.jpg') center/cover no-repeat;
         padding-top: 100px;
         display: flex;
         align-items: center;
@@ -426,6 +426,12 @@ color: white;
 }
 
 .payment-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bank-qr-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
@@ -550,6 +556,12 @@ color: white;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .qr-code {
@@ -589,6 +601,73 @@ color: white;
     font-size: 0.8rem;
     color: #1a1a1a;
     font-weight: 600;
+}
+
+/* Receipt Section Wrapper */
+.receipt-section-wrapper {
+    padding: 40px 0;
+    background: linear-gradient(135deg, #e8e8e8 0%, #d8d8d8 100%);
+}
+
+/* Receipt Section Styles */
+.receipt-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d4af37;
+    width: 100%;
+    max-width: 100%;
+}
+
+.receipt-title {
+    color: #d4af37;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.receipt-description {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+}
+
+.telegram-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: linear-gradient(135deg, #d4af37, #f4e4c1);
+    color: #1a1a1a;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.telegram-link:hover {
+    background: linear-gradient(135deg, #b8941f, #d4af37);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    color: #1a1a1a;
+}
+
+.telegram-link i {
+    font-size: 1.4rem;
 }
 
 /* Footer */
