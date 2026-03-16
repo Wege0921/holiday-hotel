@@ -31,7 +31,7 @@ h1, h2, h3 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #1a1a1a;
+    color: #d4af37;
     position: relative;
 }
 
@@ -178,9 +178,66 @@ h1, h2, h3 {
 .menu-categories {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
+    gap: 1rem;
     margin-bottom: 3rem;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.alcoholic-subcategories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    justify-content: center;
+}
+
+.food-subcategories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    justify-content: center;
+}
+
+.submenu-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #d4af37, #f4e4c1);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.submenu-btn.active {
+    background: linear-gradient(135deg, #b8860b, #daa520) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.5);
+    border: 2px solid #b8860b;
+}
+
+.submenu-btn .btn-icon {
+    font-size: 1.2rem;
 }
 
 .menu-btn {
@@ -232,6 +289,16 @@ h1, h2, h3 {
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
     text-align: center;
+}
+
+.submenu-title {
+    color: #f4e4c1;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 0.5rem;
 }
 
 .menu-items {
@@ -528,7 +595,7 @@ html {
 
 /* Active menu state */
 .menu-btn.active {
-    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-    color: #d4af37;
-    border: 2px solid #d4af37;
+    background: linear-gradient(135deg, #b8860b, #daa520) !important;
+    color: #1a1a1a;
+    border: 2px solid #b8860b;
 }

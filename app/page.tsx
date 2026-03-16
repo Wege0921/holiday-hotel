@@ -7,6 +7,8 @@ import './globals.css';
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeFoodMenu, setActiveFoodMenu] = useState<string | null>(null);
+  const [activeAlcoholicMenu, setActiveAlcoholicMenu] = useState<string | null>(null);
 
   useEffect(() => {
     // Header scroll effect
@@ -28,7 +30,55 @@ export default function Home() {
   }, []);
 
   const handleMenuClick = (category: string) => {
-    setActiveMenu(activeMenu === category ? null : category);
+    // Only scroll to menu lists for non-parent buttons
+    if (category !== 'food' && category !== 'alcoholic') {
+      setTimeout(() => {
+        const menuLists = document.querySelector('.menu-lists');
+        if (menuLists) {
+          const offsetTop = (menuLists as HTMLElement).offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+    
+    if (category === 'food') {
+      // Toggle food menu open/closed
+      if (activeMenu === 'food') {
+        setActiveMenu(null);
+        setActiveFoodMenu(null);
+      } else {
+        setActiveMenu('food');
+        setActiveFoodMenu(null);
+      }
+    } else if (category === 'alcoholic') {
+      // Toggle alcoholic menu open/closed
+      if (activeMenu === 'alcoholic') {
+        setActiveMenu(null);
+        setActiveAlcoholicMenu(null);
+      } else {
+        setActiveMenu('alcoholic');
+        setActiveAlcoholicMenu(null);
+      }
+    } else if (category === 'beef' || category === 'chicken' || category === 'pasta' || category === 'fish' || 
+               category === 'indian' || category === 'ethiopian' || category === 'snacks' || category === 'pizza' ||
+               category === 'soup' || category === 'salad' || category === 'breakfast' || category === 'dessert') {
+      // Toggle specific food category
+      setActiveFoodMenu(activeFoodMenu === category ? null : category);
+      setActiveMenu('food'); // Ensure food menu stays open
+    } else if (category === 'wine' || category === 'beer' || category === 'whisky' || category === 'vodka' ||
+               category === 'gin' || category === 'liqueur') {
+      // Toggle specific alcoholic category
+      setActiveAlcoholicMenu(activeAlcoholicMenu === category ? null : category);
+      setActiveMenu('alcoholic'); // Ensure alcoholic menu stays open
+    } else {
+      // Handle other categories
+      setActiveMenu(activeMenu === category ? null : category);
+      setActiveFoodMenu(null);
+      setActiveAlcoholicMenu(null);
+    }
   };
 
   const handleNavClick = (targetId: string) => {
@@ -90,29 +140,104 @@ export default function Home() {
               className={`menu-btn ${activeMenu === 'food' ? 'active' : ''}`}
               onClick={() => handleMenuClick('food')}
             >
-              <span className="btn-icon">🍽</span>
-              <span>Food Menu</span>
+              <span className="btn-icon">🍽️</span>
+              <span>Food</span>
             </button>
-            <button 
-              className={`menu-btn ${activeMenu === 'beverages' ? 'active' : ''}`}
-              onClick={() => handleMenuClick('beverages')}
-            >
-              <span className="btn-icon">🥤</span>
-              <span>Beverages</span>
-            </button>
-            <button 
-              className={`menu-btn ${activeMenu === 'alcoholic' ? 'active' : ''}`}
-              onClick={() => handleMenuClick('alcoholic')}
-            >
-              <span className="btn-icon">🍷</span>
-              <span>Alcoholic Drinks</span>
-            </button>
+            
+            {/* Food Subcategories */}
+            <div className={`food-subcategories ${activeMenu !== 'food' ? 'hidden' : ''}`}>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'beef' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('beef')}
+              >
+                <span className="btn-icon">🥩</span>
+                <span>Beef</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'chicken' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('chicken')}
+              >
+                <span className="btn-icon">🍗</span>
+                <span>Chicken</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'pasta' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('pasta')}
+              >
+                <span className="btn-icon">🍝</span>
+                <span>Pasta & Rice</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'fish' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('fish')}
+              >
+                <span className="btn-icon">🐟</span>
+                <span>Fish</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'indian' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('indian')}
+              >
+                <span className="btn-icon">🍛</span>
+                <span>Indian Flavor</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'ethiopian' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('ethiopian')}
+              >
+                <span className="btn-icon">🫒</span>
+                <span>Ethiopian Corner</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'snacks' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('snacks')}
+              >
+                <span className="btn-icon">🥪</span>
+                <span>Snacks</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'pizza' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('pizza')}
+              >
+                <span className="btn-icon">🍕</span>
+                <span>Pizzeria</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'soup' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('soup')}
+              >
+                <span className="btn-icon">🍲</span>
+                <span>Soup</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'salad' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('salad')}
+              >
+                <span className="btn-icon">🥗</span>
+                <span>Salads</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'breakfast' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('breakfast')}
+              >
+                <span className="btn-icon">🍳</span>
+                <span>Breakfast</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeFoodMenu === 'dessert' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('dessert')}
+              >
+                <span className="btn-icon">🍰</span>
+                <span>Dessert</span>
+              </button>
+            </div>
+            
             <button 
               className={`menu-btn ${activeMenu === 'non-alcoholic' ? 'active' : ''}`}
               onClick={() => handleMenuClick('non-alcoholic')}
             >
               <span className="btn-icon">🧃</span>
-              <span>Non-Alcoholic Drinks</span>
+              <span>Non-Alcoholic Beverages</span>
             </button>
             <button 
               className={`menu-btn ${activeMenu === 'hot' ? 'active' : ''}`}
@@ -121,125 +246,450 @@ export default function Home() {
               <span className="btn-icon">☕</span>
               <span>Hot Drinks</span>
             </button>
+            <button 
+              className={`menu-btn ${activeMenu === 'alcoholic' ? 'active' : ''}`}
+              onClick={() => handleMenuClick('alcoholic')}
+            >
+              <span className="btn-icon">🍷</span>
+              <span>Alcoholic Beverages</span>
+            </button>
+            
+            {/* Alcoholic Subcategories */}
+            <div className={`alcoholic-subcategories ${activeMenu !== 'alcoholic' ? 'hidden' : ''}`}>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'wine' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('wine')}
+              >
+                <span className="btn-icon">🍷</span>
+                <span>Wine</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'beer' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('beer')}
+              >
+                <span className="btn-icon">🍺</span>
+                <span>Beer</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'whisky' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('whisky')}
+              >
+                <span className="btn-icon">🥃</span>
+                <span>Whisky</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'vodka' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('vodka')}
+              >
+                <span className="btn-icon">🫙</span>
+                <span>Vodka</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'gin' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('gin')}
+              >
+                <span className="btn-icon">🍸</span>
+                <span>Gin</span>
+              </button>
+              <button 
+                className={`submenu-btn ${activeAlcoholicMenu === 'liqueur' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('liqueur')}
+              >
+                <span className="btn-icon">🥃</span>
+                <span>Liqueur</span>
+              </button>
+            </div>
+            <button 
+              className={`menu-btn ${activeMenu === 'juice' ? 'active' : ''}`}
+              onClick={() => handleMenuClick('juice')}
+            >
+              <span className="btn-icon">🥤</span>
+              <span>Juice</span>
+            </button>
+            <button 
+              className={`menu-btn ${activeMenu === 'cake' ? 'active' : ''}`}
+              onClick={() => handleMenuClick('cake')}
+            >
+              <span className="btn-icon">🍰</span>
+              <span>Cake</span>
+            </button>
           </div>
 
           <div className="menu-lists">
-            <div className={`menu-list ${activeMenu !== 'food' ? 'hidden' : ''}`}>
-              <h3>Food Menu</h3>
+            <div className={`menu-list ${activeFoodMenu !== 'beef' ? 'hidden' : ''}`}>
+              <h3>Beef</h3>
               <div className="menu-items">
                 <div className="menu-item">
-                  <span className="item-name">Injera with Doro Wat</span>
-                  <span className="item-price">ETB 250</span>
+                  <span className="item-name">Festive beef tenderloin</span>
+                  <span className="item-price">ETB 880</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Tibs (Beef/Lamb)</span>
-                  <span className="item-price">ETB 280</span>
+                  <span className="item-name">Stake alabesmaka</span>
+                  <span className="item-price">ETB 880</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Kitfo (Ethiopian Steak Tartare)</span>
-                  <span className="item-price">ETB 320</span>
+                  <span className="item-name">Beef fillet sizzlers</span>
+                  <span className="item-price">ETB 800</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Shiro Ful</span>
-                  <span className="item-price">ETB 180</span>
+                  <span className="item-name">Pepper steak</span>
+                  <span className="item-price">ETB 880</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'chicken' ? 'hidden' : ''}`}>
+              <h3>Chicken</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Chicken cordon bleu</span>
+                  <span className="item-price">ETB 700</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Grilled Salmon</span>
+                  <span className="item-name">Chicken stroganoff</span>
+                  <span className="item-price">ETB 700</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Roasted chicken leg</span>
+                  <span className="item-price">ETB 780</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chicken breast</span>
+                  <span className="item-price">ETB 780</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chicken cutlet</span>
+                  <span className="item-price">ETB 699</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Stir fried chicken</span>
+                  <span className="item-price">ETB 700</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'pasta' ? 'hidden' : ''}`}>
+              <h3>Pasta and Rice</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Meat sauce</span>
+                  <span className="item-price">ETB 650</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tomato sauce</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Carbonara sauce</span>
+                  <span className="item-price">ETB 620</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Vegetable sauce</span>
+                  <span className="item-price">ETB 590</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chicken sauce</span>
+                  <span className="item-price">ETB 650</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'fish' ? 'hidden' : ''}`}>
+              <h3>Fish</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Fish cutlet</span>
+                  <span className="item-price">ETB 680</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Spice napoleon fish</span>
+                  <span className="item-price">ETB 650</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fish goulash</span>
+                  <span className="item-price">ETB 700</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'indian' ? 'hidden' : ''}`}>
+              <h3>Indian Flavor</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Beef madras</span>
+                  <span className="item-price">ETB 690</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chicken Curry</span>
+                  <span className="item-price">ETB 690</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Indian pilaf with egg</span>
+                  <span className="item-price">ETB 650</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'ethiopian' ? 'hidden' : ''}`}>
+              <h3>Ethiopian Corner</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Doro fir fir</span>
+                  <span className="item-price">ETB 700</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Doro Wet key</span>
+                  <span className="item-price">ETB 780</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chikina Tibs</span>
+                  <span className="item-price">ETB 890</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tibs Fir fir</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Quanta Firfir</span>
+                  <span className="item-price">ETB 590</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Lamb Tibs</span>
+                  <span className="item-price">ETB 900</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fasting Fir fir</span>
+                  <span className="item-price">ETB 530</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Bozena Shiro</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tegabino Shiro</span>
+                  <span className="item-price">ETB 520</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fasting Beyanet</span>
+                  <span className="item-price">ETB 790</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">MISER WET</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'snacks' ? 'hidden' : ''}`}>
+              <h3>Snacks</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Tuna Sandwich</span>
+                  <span className="item-price">ETB 680</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Club Sandwich</span>
+                  <span className="item-price">ETB 750</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Mexican vegetable wrap</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chicken Wrap</span>
+                  <span className="item-price">ETB 690</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Cheese burger</span>
+                  <span className="item-price">ETB 780</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">French fries</span>
                   <span className="item-price">ETB 450</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Mixed Vegetables</span>
-                  <span className="item-price">ETB 150</span>
+                  <span className="item-name">Cooked vegetable</span>
+                  <span className="item-price">ETB 480</span>
                 </div>
               </div>
             </div>
 
-            <div className={`menu-list ${activeMenu !== 'beverages' ? 'hidden' : ''}`}>
-              <h3>Beverages</h3>
+            <div className={`menu-list ${activeFoodMenu !== 'pizza' ? 'hidden' : ''}`}>
+              <h3>Pizzeria</h3>
               <div className="menu-items">
                 <div className="menu-item">
-                  <span className="item-name">Fresh Orange Juice</span>
-                  <span className="item-price">ETB 60</span>
+                  <span className="item-name">Holiday Special pizza</span>
+                  <span className="item-price">ETB 899</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Mango Juice</span>
-                  <span className="item-price">ETB 65</span>
+                  <span className="item-name">Chicken pizza</span>
+                  <span className="item-price">ETB 850</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Pineapple Juice</span>
-                  <span className="item-price">ETB 60</span>
+                  <span className="item-name">Beef pizza</span>
+                  <span className="item-price">ETB 850</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Avocado Smoothie</span>
-                  <span className="item-price">ETB 70</span>
+                  <span className="item-name">Tuna Pizza</span>
+                  <span className="item-price">ETB 880</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Mixed Berry Juice</span>
-                  <span className="item-price">ETB 65</span>
+                  <span className="item-name">Vegetable pizza</span>
+                  <span className="item-price">ETB 710</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Margherita pizza</span>
+                  <span className="item-price">ETB 800</span>
                 </div>
               </div>
             </div>
 
-            <div className={`menu-list ${activeMenu !== 'alcoholic' ? 'hidden' : ''}`}>
-              <h3>Alcoholic Drinks</h3>
+            <div className={`menu-list ${activeFoodMenu !== 'soup' ? 'hidden' : ''}`}>
+              <h3>Soup</h3>
               <div className="menu-items">
                 <div className="menu-item">
-                  <span className="item-name">Red Wine (Glass)</span>
-                  <span className="item-price">ETB 120</span>
+                  <span className="item-name">Chicken and mushroom</span>
+                  <span className="item-price">ETB 550</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">White Wine (Glass)</span>
-                  <span className="item-price">ETB 110</span>
+                  <span className="item-name">Vegetable soup</span>
+                  <span className="item-price">ETB 400</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Beer (Local)</span>
-                  <span className="item-price">ETB 45</span>
+                  <span className="item-name">Corn and fish chowder soup</span>
+                  <span className="item-price">ETB 420</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Beer (Import)</span>
-                  <span className="item-price">ETB 65</span>
+                  <span className="item-name">Tomato and lentil soup</span>
+                  <span className="item-price">ETB 400</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Whiskey (Shot)</span>
-                  <span className="item-price">ETB 150</span>
+                  <span className="item-name">Porridge</span>
+                  <span className="item-price">ETB 450</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'salad' ? 'hidden' : ''}`}>
+              <h3>Salads</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Fresh garden salad</span>
+                  <span className="item-price">ETB 380</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Gin & Tonic</span>
-                  <span className="item-price">ETB 130</span>
+                  <span className="item-name">House salad</span>
+                  <span className="item-price">ETB 480</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Mojito</span>
-                  <span className="item-price">ETB 140</span>
+                  <span className="item-name">Tuna salad</span>
+                  <span className="item-price">ETB 520</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Holy social salad</span>
+                  <span className="item-price">ETB 590</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'breakfast' ? 'hidden' : ''}`}>
+              <h3>Breakfast</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Full breakfast</span>
+                  <span className="item-price">ETB 600</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Continental breakfast</span>
+                  <span className="item-price">ETB 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Scrambled egg</span>
+                  <span className="item-price">ETB 560</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Plane Omelet</span>
+                  <span className="item-price">ETB 560</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Special omelet</span>
+                  <span className="item-price">ETB 600</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Spanish omelet</span>
+                  <span className="item-price">ETB 570</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Cheese Omelet</span>
+                  <span className="item-price">ETB 590</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Scrambled egg with meat</span>
+                  <span className="item-price">ETB 570</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Boiled egg</span>
+                  <span className="item-price">ETB 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fasting Firfir</span>
+                  <span className="item-price">ETB 560</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tibs Firfir</span>
+                  <span className="item-price">ETB 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fasting chechebesa</span>
+                  <span className="item-price">ETB 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Non fasting chechebesa</span>
+                  <span className="item-price">ETB 560</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeFoodMenu !== 'dessert' ? 'hidden' : ''}`}>
+              <h3>Dessert</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Seasonal Fruit Salad</span>
+                  <span className="item-price">ETB 380</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Crepes Suzette</span>
+                  <span className="item-price">ETB 360</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Varieties of cake</span>
+                  <span className="item-price">ETB 360</span>
                 </div>
               </div>
             </div>
 
             <div className={`menu-list ${activeMenu !== 'non-alcoholic' ? 'hidden' : ''}`}>
-              <h3>Non-Alcoholic Drinks</h3>
+              <h3>Non-Alcoholic Beverages</h3>
               <div className="menu-items">
                 <div className="menu-item">
-                  <span className="item-name">Soft Drinks (Coke, Sprite, Fanta)</span>
-                  <span className="item-price">ETB 35</span>
+                  <span className="item-name">Soft drink</span>
+                  <span className="item-price">ETB 119.99</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Mineral Water</span>
-                  <span className="item-price">ETB 25</span>
+                  <span className="item-name">Ambo water</span>
+                  <span className="item-price">ETB 119.99</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Fresh Lemonade</span>
-                  <span className="item-price">ETB 50</span>
+                  <span className="item-name">Water ½ liter</span>
+                  <span className="item-price">ETB 110.00</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Iced Tea</span>
-                  <span className="item-price">ETB 45</span>
+                  <span className="item-name">Water 1 liter</span>
+                  <span className="item-price">ETB 125.00</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Virgin Mojito</span>
-                  <span className="item-price">ETB 60</span>
-                </div>
-                <div className="menu-item">
-                  <span className="item-name">Milkshake</span>
-                  <span className="item-price">ETB 70</span>
+                  <span className="item-name">Water 2 liter</span>
+                  <span className="item-price">ETB 199.99</span>
                 </div>
               </div>
             </div>
@@ -248,32 +698,336 @@ export default function Home() {
               <h3>Hot Drinks</h3>
               <div className="menu-items">
                 <div className="menu-item">
-                  <span className="item-name">Espresso</span>
-                  <span className="item-price">ETB 40</span>
+                  <span className="item-name">Special Tea</span>
+                  <span className="item-price">ETB 200</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Cappuccino</span>
-                  <span className="item-price">ETB 55</span>
+                  <span className="item-name">Macchiato</span>
+                  <span className="item-price">ETB 130</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Latte</span>
-                  <span className="item-price">ETB 60</span>
-                </div>
-                <div className="menu-item">
-                  <span className="item-name">Ethiopian Coffee</span>
-                  <span className="item-price">ETB 65</span>
-                </div>
-                <div className="menu-item">
-                  <span className="item-name">Tea (Black/Green)</span>
-                  <span className="item-price">ETB 35</span>
+                  <span className="item-name">Tea</span>
+                  <span className="item-price">ETB 80</span>
                 </div>
                 <div className="menu-item">
                   <span className="item-name">Hot Chocolate</span>
+                  <span className="item-price">ETB 200</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Cappuccino</span>
+                  <span className="item-price">ETB 200</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Milk with Coffee</span>
+                  <span className="item-price">ETB 130</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Milk</span>
+                  <span className="item-price">ETB 130</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Fasting Macchiato</span>
+                  <span className="item-price">ETB 120</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Ginger/Lemon Tea</span>
+                  <span className="item-price">ETB 110</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tea with Coffee</span>
+                  <span className="item-price">ETB 110</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Coffee</span>
+                  <span className="item-price">ETB 120</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Traditional Coffee</span>
                   <span className="item-price">ETB 50</span>
                 </div>
                 <div className="menu-item">
-                  <span className="item-name">Spiced Tea</span>
-                  <span className="item-price">ETB 45</span>
+                  <span className="item-name">Peanut Tea</span>
+                  <span className="item-price">ETB 120</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Green Tea</span>
+                  <span className="item-price">ETB 110</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Teakorenti</span>
+                  <span className="item-price">ETB 180</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'wine' ? 'hidden' : ''}`}>
+              <h3>Wine</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Acacia dry red</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Acacia medium sweet red</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Acacia medium sweet white</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Acacia medium sweet rose</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Kemila wine</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Rift valley wine</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Gebeta wine</span>
+                  <span className="item-price">ETB 2,500</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'beer' ? 'hidden' : ''}`}>
+              <h3>Beer</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Local beer</span>
+                  <span className="item-price">ETB 160.00</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Bedele (big)</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Arada cocktail</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Heineken beer</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'whisky' ? 'hidden' : ''}`}>
+              <h3>Whisky (bottle/½ bottle/shot)</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Gold label</span>
+                  <span className="item-price">ETB 22,000 / 11,000 / 590</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Double black</span>
+                  <span className="item-price">ETB 20,000 / 10,000 / 550</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Black label</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Red label</span>
+                  <span className="item-price">ETB 15,000 / 7,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">High land queen</span>
+                  <span className="item-price">ETB 15,000 / 7,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Dimple 15 yrs</span>
+                  <span className="item-price">ETB 20,000 / 10,000 / 550</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Glenfiddich 12 yrs</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Jack Daniel</span>
+                  <span className="item-price">ETB 20,000 / 10,000 / 550</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'vodka' ? 'hidden' : ''}`}>
+              <h3>Vodka (bottle/½ bottle/shot)</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Absolut vodka</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Ciroc vodka</span>
+                  <span className="item-price">ETB 19,000 / 9,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Stolichnaya vodka</span>
+                  <span className="item-price">ETB 16,000 / 8,000 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Winter palace</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Smirnoff vodka</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Skyy vodka</span>
+                  <span className="item-price">ETB 18,000 / 9,000 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Grey goose</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'gin' ? 'hidden' : ''}`}>
+              <h3>Gin (bottle/½ bottle/shot)</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Gordon gin</span>
+                  <span className="item-price">ETB 16,000 / 8,000 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Hendricks</span>
+                  <span className="item-price">ETB 22,000 / 11,000 / 580</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Tanqueray</span>
+                  <span className="item-price">ETB 18,000 / 9,000 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Bombay</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeAlcoholicMenu !== 'liqueur' ? 'hidden' : ''}`}>
+              <h3>Liqueur (bottle/½ bottle/shot)</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Campari Bitter</span>
+                  <span className="item-price">ETB 16,000 / 8,000 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Amarula cream</span>
+                  <span className="item-price">ETB 15,000 / 7,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Baileys Irish cream</span>
+                  <span className="item-price">ETB 15,000 / 7,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Josie Cuervo</span>
+                  <span className="item-price">ETB 16,000 / 8,000 / 480</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Malibu</span>
+                  <span className="item-price">ETB 16,000 / 8,000 / 480</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Patron sliver</span>
+                  <span className="item-price">ETB 24,000 / 12,000 / 650</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Pernodparis</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Remy martin</span>
+                  <span className="item-price">ETB 29,000 / 14,500 / 750</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Hennessy</span>
+                  <span className="item-price">ETB 32,000 / 16,000 / 850</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Patron café xo</span>
+                  <span className="item-price">ETB 21,000 / 10,500 / 550</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Jagermeister</span>
+                  <span className="item-price">ETB 15,000 / 7,500 / 450</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Capitain Morgan</span>
+                  <span className="item-price">ETB 18,000 / 9,000 / 480</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Grey goose vodka</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">FernetBranca</span>
+                  <span className="item-price">ETB 19,000 / 9,500 / 500</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Camino Tequila</span>
+                  <span className="item-price">ETB 17,000 / 8,500 / 580</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeMenu !== 'juice' ? 'hidden' : ''}`}>
+              <h3>Juice</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">Watermelon juice</span>
+                  <span className="item-price">ETB 180</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Papaya juice</span>
+                  <span className="item-price">ETB 180</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Mixed juice</span>
+                  <span className="item-price">ETB 200</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={`menu-list ${activeMenu !== 'cake' ? 'hidden' : ''}`}>
+              <h3>Cake</h3>
+              <div className="menu-items">
+                <div className="menu-item">
+                  <span className="item-name">English cake</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Banana cake</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Carrot cake</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Crossant cake</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Chocolate chips</span>
+                  <span className="item-price">ETB 199.99</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Torta cake (Normal)</span>
+                  <span className="item-price">ETB 2,500.00</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Torta cake (Marzipan)</span>
+                  <span className="item-price">ETB 3,000.00</span>
+                </div>
+                <div className="menu-item">
+                  <span className="item-name">Bombolino</span>
+                  <span className="item-price">ETB 199.99</span>
                 </div>
               </div>
             </div>
