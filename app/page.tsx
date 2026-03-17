@@ -152,6 +152,13 @@ export default function Home() {
             {/* Food Subcategories */}
             <div className={`food-subcategories ${activeMenu !== 'food' ? 'hidden' : ''}`}>
               <button 
+                className={`submenu-btn ${activeFoodMenu === 'breakfast' ? 'active' : ''}`}
+                onClick={() => handleMenuClick('breakfast')}
+              >
+                <span className="btn-icon">🍳</span>
+                <span>Breakfast</span>
+              </button>
+              <button 
                 className={`submenu-btn ${activeFoodMenu === 'beef' ? 'active' : ''}`}
                 onClick={() => handleMenuClick('beef')}
               >
