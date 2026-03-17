@@ -1050,12 +1050,6 @@ export default function Home() {
                 <h3>CBE</h3>
                 <div className="account-details">
                   <div className="account-item">
-                    <label>Account Name:</label>
-                    <div className="account-name-display">
-                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
-                    </div>
-                  </div>
-                  <div className="account-item">
                     <label>Account Number:</label>
                     <div className="copy-container">
                       <span className="account-number">1000157421895</span>
@@ -1080,12 +1074,6 @@ export default function Home() {
               <div className="bank-info">
                 <h3>Abyssinia Bank</h3>
                 <div className="account-details">
-                  <div className="account-item">
-                    <label>Account Name:</label>
-                    <div className="account-name-display">
-                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
-                    </div>
-                  </div>
                   <div className="account-item">
                     <label>Account Number:</label>
                     <div className="copy-container">
@@ -1112,12 +1100,6 @@ export default function Home() {
                 <h3>Wogagen Bank</h3>
                 <div className="account-details">
                   <div className="account-item">
-                    <label>Account Name:</label>
-                    <div className="account-name-display">
-                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
-                    </div>
-                  </div>
-                  <div className="account-item">
                     <label>Account Number:</label>
                     <div className="copy-container">
                       <span className="account-number">5000998877665</span>
@@ -1142,12 +1124,6 @@ export default function Home() {
               <div className="bank-info">
                 <h3>Anbessa Bank</h3>
                 <div className="account-details">
-                  <div className="account-item">
-                    <label>Account Name:</label>
-                    <div className="account-name-display">
-                      <span className="account-name">Holiday Hotel PVT.LTD.CO</span>
-                    </div>
-                  </div>
                   <div className="account-item">
                     <label>Account Number:</label>
                     <div className="copy-container">
