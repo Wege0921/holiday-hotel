@@ -135,7 +135,7 @@ export default function Home() {
             className="hero-title-btn"
             onClick={() => handleNavClick('#menu')}
           >
-            Holiday Hotel Menu
+            Hotel Menu
           </button>
           <p className="hero-tagline">Best Hotel in Addis Ababa, Ethiopia Since 1986</p>
         </div>
