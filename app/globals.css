@@ -190,9 +190,7 @@ h1, h2, h3 {
     
     .hero {
         background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                    url('https://res.cloudinary.com/dpral0rfp/image/upload/v1773670214/Holiday-Cover_icjhz0.jpg') center/contain no-repeat;
-        background-size: cover;
-        background-position: center;
+                    url('https://res.cloudinary.com/dpral0rfp/image/upload/v1773670214/Holiday-Cover_icjhz0.jpg') center/cover no-repeat;
         padding-top: 100px;
         display: flex;
         align-items: center;
@@ -214,8 +212,11 @@ h1, h2, h3 {
     
     /* Payment Section Mobile Responsive */
     .payment-container {
-        padding: 0 15px;
+        padding: 0 10px;
         gap: 1rem;
+        width: 95%;
+        max-width: 95%;
+        margin: 0 auto;
     }
     
     .bank-qr-row {
@@ -233,6 +234,11 @@ h1, h2, h3 {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+    
+    /* Hide account name on mobile */
+    .account-name-item {
+        display: none !important;
     }
     
     .bank-info h3 {
