@@ -1215,6 +1215,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <p>&copy; {new Date().getFullYear()} Holiday Hotel – All Rights Reserved</p>
+            <p>Developed by <a href="https://habkal.com/" target="_blank" rel="noopener noreferrer" className="developer-link">Habkal</a></p>
           </div>
         </div>
       </footer>
