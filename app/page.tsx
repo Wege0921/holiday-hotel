@@ -131,7 +131,12 @@ export default function Home() {
       <section id="home" className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h1 className="hero-title">Holiday Hotel</h1>
+          <button 
+            className="hero-title-btn"
+            onClick={() => handleNavClick('#menu')}
+          >
+            Holiday Hotel Menu
+          </button>
           <p className="hero-tagline">Best Hotel in Addis Ababa, Ethiopia Since 1986</p>
         </div>
       </section>
