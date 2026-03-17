@@ -234,13 +234,6 @@ export default function Home() {
                 <span>Salads</span>
               </button>
               <button 
-                className={`submenu-btn ${activeFoodMenu === 'breakfast' ? 'active' : ''}`}
-                onClick={() => handleMenuClick('breakfast')}
-              >
-                <span className="btn-icon">🍳</span>
-                <span>Breakfast</span>
-              </button>
-              <button 
                 className={`submenu-btn ${activeFoodMenu === 'dessert' ? 'active' : ''}`}
                 onClick={() => handleMenuClick('dessert')}
               >
