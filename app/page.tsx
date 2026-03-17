@@ -1047,7 +1047,7 @@ export default function Home() {
           <div className="payment-container">
             <div className="bank-qr-row">
               <div className="bank-info">
-                <h3>Commercial Bank of Ethiopia</h3>
+                <h3>CBE</h3>
                 <div className="account-details">
                   <div className="account-item">
                     <label>Account Name:</label>
@@ -1071,7 +1071,7 @@ export default function Home() {
                 <h3>CBE QR</h3>
                 <div className="qr-placeholder">
                   <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000157421895" alt="CBE QR Code" className="qr-image" />
-                  <p>Commercial Bank of Ethiopia</p>
+                  <p>CBE</p>
                 </div>
               </div>
             </div>
