@@ -235,6 +235,25 @@ h1, h2, h3 {
         justify-content: center;
     }
     
+    .bank-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .account-details label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .account-number {
+        font-size: 0.8rem;
+    }
+    
+    .copy-btn {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+    }
+    
     .qr-code {
         padding: 1rem;
         height: 140px;
@@ -244,6 +263,16 @@ h1, h2, h3 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    
+    .qr-code h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .qr-placeholder p {
+        font-size: 0.7rem;
+        margin-top: 0.3rem;
     }
     
     .qr-image {
